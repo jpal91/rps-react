@@ -17,6 +17,11 @@ const typography = {
   h4: {
     fontWeight: baseProperties.fontWeightRegular,
     fontFamily: baseProperties.fontFamily
+  },
+  body1: {},
+  body2: {
+    fontWeight: baseProperties.fontWeightRegular,
+    fontFamily: baseProperties.fontFamily
   }
 };
 
