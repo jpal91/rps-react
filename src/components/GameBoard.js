@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 
 const GameBoard = () => {
   return (
-    <Grid container item xs={12}>
+    <Grid container sx={{ width: 944 }}>
       <Image
         src="./images/icon-rock2.svg"
         imageStyle={{ width: 200, height: 200 }}

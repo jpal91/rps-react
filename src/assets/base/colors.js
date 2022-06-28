@@ -11,10 +11,10 @@ const baseProperties = {
     main: "hsl(229, 25%, 31%)",
     score: "hsl(229, 64%, 46%)",
     header: "hsl(217, 16%, 45%)"
-  },
-  background: {
-    default: "hsl(229, 25%, 31%)"
   }
+  // background: {
+  //   default: 'hsl(214, 47%, 23%)',
+  // },
 };
 
 export default baseProperties;

@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material";
 
+import globals from "./base/global";
 import typography from "./base/typography";
 import colors from "./base/colors";
 import breakpoints from "./base/breakpoints";
@@ -10,6 +11,11 @@ export default createTheme({
   palette: { ...colors },
   breakpoints: { ...breakpoints },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        ...globals
+      }
+    },
     MuiGrid: { ...grid }
   }
 });

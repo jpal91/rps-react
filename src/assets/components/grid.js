@@ -7,7 +7,7 @@ const grid = {
     root: {
       display: "flex",
       justifyContent: "center",
-      backgroundColor: background.default
+      backgroundColor: "hsla(360, 100%, 100%, 0)"
     }
   }
 };

@@ -1,10 +1,11 @@
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-// import Box from "@mui/material/Box";
+import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 // import Image from "material-ui-image";
 
 import GameBoard from "./components/GameBoard";
+import ScoreBoard from "./components/ScoreBoard";
 
 import theme from "./assets";
 
@@ -12,16 +13,30 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container
-        fluid
+      <Box
         sx={{
-          maxWidth: 1440,
-          backgroundColor: "background.default",
-          display: "flex"
+          width: "100%",
+          height: 2000,
+          zIndex: 0,
+          backgroundSize: "contain",
+          backgroundImage:
+            "radial-gradient(134.34% 134.34% at 50% 0%, #1F3757 0%, #131537 100%)"
         }}
       >
-        <GameBoard />
-      </Container>
+        <Container
+          fluid
+          sx={{
+            maxWidth: 1440,
+            backgroundColor: "hsla(360, 100%, 100%, 0)",
+            display: "flex",
+            justifyContent: "flex-start",
+            flexDirection: "column"
+          }}
+        >
+          <ScoreBoard />
+          <GameBoard />
+        </Container>
+      </Box>
     </ThemeProvider>
   );
 };
