@@ -1,11 +1,15 @@
 import { createTheme } from "@mui/material";
 
-import typography from './base/typography'
-import colors from './base/colors'
+import typography from "./base/typography";
+import colors from "./base/colors";
 import breakpoints from "./base/breakpoints";
+import grid from "./components/grid";
 
 export default createTheme({
-    typography: { ...typography },
-    palette: { ...colors },
-    breakpoints: { ...breakpoints }
-})
+  typography: { ...typography },
+  palette: { ...colors },
+  breakpoints: { ...breakpoints },
+  components: {
+    MuiGrid: { ...grid }
+  }
+});
