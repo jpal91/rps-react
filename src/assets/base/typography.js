@@ -1,7 +1,18 @@
 const baseProperties = {
     fontWeightBold: 700,
-    fontWeightRegular: 400,
-    fontSize: 18
+    fontWeightRegular: 600,
+    fontFamily: "'Barlow Semi Condensed', sans-serif"
 }
 
-export default baseProperties
+const typography = {
+    h3: {
+        fontWeight: baseProperties.fontWeightBold,
+        fontFamily: baseProperties.fontFamily
+    },
+    h4: {
+        fontWeight: baseProperties.fontWeightRegular,
+        fontFamily: baseProperties.fontFamily
+    }
+}
+
+export default typography
