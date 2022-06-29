@@ -71,7 +71,7 @@ Users should be able to:
 
 - Solution URL: [https://github.com/jpal91/rps-react](https://github.com/jpal91/rps-react)
 
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [https://rps-react-ebon.vercel.app/](https://rps-react-ebon.vercel.app/)
 
   
 
