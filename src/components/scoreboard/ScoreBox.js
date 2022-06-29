@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
+//holds the actual score container, updated with redux
 const ScoreBox = (props) => {
     const { score } = props
 	
