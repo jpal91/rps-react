@@ -62,7 +62,7 @@ Users should be able to:
 
   
 
-![](./public/images/screenshot.jpg)
+![](./public/images/screenshot.JPG)
   
 
 ### Links
