@@ -36,7 +36,7 @@ const Winner = (props) => {
             item
             xs={12}
             lg={4}
-            sx={{ flexDirection: "column", alignItems: "center", opacity: 0, animation: `${fade} 3s ease-in 3s 1 normal forwards` }}
+            sx={{ flexDirection: "column", alignItems: "center", opacity: 0, animation: winner ? `${fade} 3s ease-in 3s 1 normal forwards` : `${fade} 0.5s ease-in 0.5s 1 normal forwards` }}
         >
             <Typography variant="h3" sx={{ color: "white" }}>
                 {message}

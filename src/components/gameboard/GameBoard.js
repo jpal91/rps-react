@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import Image from "material-ui-image";
 import Grid from "@mui/material/Grid";
 import Box from '@mui/material/Box'
@@ -12,6 +14,8 @@ import { playAGame } from "../../helpers/playgame";
 
 const GameBoard = (props) => {
     const { gameOn, userScore, updateMessage, youPick, housePick } = props
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down("lg"));
 	
 	const handlePG = (pick) => {
 		let gameObj = playAGame(pick)
@@ -31,9 +35,9 @@ const GameBoard = (props) => {
                     xs={6}
                     sx={{ justifyContent: "flex-end", p: 3 }}
                 >
-					<IconButton onClick={() => handlePG('scissors')}>
+					<IconButton onClick={() => handlePG('paper')}>
                     <Image
-                        src="./images/icon-scissors2.svg"
+                        src="./images/icon-paper2.svg"
                         imageStyle={{
 							cover: true,
                             position: "relative",
@@ -41,8 +45,8 @@ const GameBoard = (props) => {
                         style={{
                             zIndex: 1,
                             padding: 0,
-							height: 200,
-							width: 200,
+							height: matches ? 150: 200,
+							width: matches ? 150: 200,
                             backgroundColor: "hsla(360, 100%, 100%, 0)",
                         }}
 						
@@ -50,9 +54,9 @@ const GameBoard = (props) => {
 					</IconButton>
                 </Grid>
                 <Grid item xs={6} sx={{ justifyContent: "flex-start", p: 3 }}>
-                    <IconButton onClick={() => handlePG('paper')}>
+                    <IconButton onClick={() => handlePG('scissors')}>
 					<Image
-                        src="./images/icon-paper2.svg"
+                        src="./images/icon-scissors2.svg"
                         imageStyle={{
                             cover: true,
                             position: "relative",
@@ -60,8 +64,8 @@ const GameBoard = (props) => {
                         style={{
                             zIndex: 1,
                             padding: 0,
-							height: 200,
-							width: 200,
+							height: matches ? 150: 200,
+							width: matches ? 150: 200,
                             backgroundColor: "hsla(360, 100%, 100%, 0)",
                         }}
 						
@@ -80,8 +84,8 @@ const GameBoard = (props) => {
                     style={{
                         zIndex: 1,
                         padding: 0,
-						height: 200,
-						width: 200,
+						height: matches ? 150: 200,
+						width: matches ? 150: 200,
                         backgroundColor: "hsla(360, 100%, 100%, 0)",
                     }}
 					

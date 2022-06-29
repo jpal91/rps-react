@@ -43,7 +43,7 @@ const Picks = (props) => {
             sx={{
                 flexDirection: { xs: "column-reverse", lg: "column" },
                 alignItems: "center",
-                animation: id === 'comp' ? `${fade} 3s ease-in` : null
+                animation: id === 'comp' && winner ? `${fade} 3s ease-in` : null
             }}
         >
             <Typography

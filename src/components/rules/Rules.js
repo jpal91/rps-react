@@ -19,9 +19,9 @@ const Rules = () => {
                 justifyContent: { xs: "center", lg: "flex-end" },
                 mt: { xs: 5 },
                 pr: { xs: 0 },
-                position: { xs: 'static', lg: 'absolute'},
-                left: '-15%',
-                bottom: '5%'
+                position: 'absolute',
+                left: { xs: '0%', lg: '-15%'},
+                bottom: { xs: '15%', lg: '5%' }
             }}
         >
             <Button variant='outlined' onClick={handleOpen} sx={{ px: 5, py: 1, letterSpacing: 2 }}>RULES</Button>
