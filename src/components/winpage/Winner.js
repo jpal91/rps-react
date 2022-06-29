@@ -10,6 +10,7 @@ import { keyframes } from "@emotion/react";
 import Picks from './Picks'
 import { gameOn } from "../../actions";
 
+//keyframes for animations in component below
 const fade = keyframes`
     from {
         opacity: 0
@@ -19,18 +20,19 @@ const fade = keyframes`
         opacity: 1
     }
 `
-
+//The alternate to the GameBoard page, triggered when an option is clicked
 const Winner = (props) => {
-    const { message, userPick, compPick, gameOn } = props
+    const { message, userPick, compPick, gameOn, winner } = props
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("lg"));
-    let winner = message === 'YOU WIN!' ? 'user' : 'comp'
-    message === "IT'S A TIE!" ? winner = null : winner = winner
     
+    //resets game to GameBoard page
     const handleReset = () => {
         gameOn(true)
     }
 
+    //since the formatting is slightly different on mobile, I separated this section out
+    //so I can reorganize below based on screensize
     const winOrLose = (
         <Grid
             item
@@ -80,7 +82,8 @@ const mapStateToProps = (state) => {
     return {
         message: state.message,
         userPick: state.userPick,
-        compPick: state.compPick
+        compPick: state.compPick,
+        winner: state.winner
     }
 }
 

@@ -5,11 +5,13 @@ import score from './updatescore'
 import message from "./message";
 import userpick from "./userpick";
 import comppick from "./comppick";
+import winner from "./winner";
 
 export default combineReducers({
     gameIsOn: gameon,
     score: score,
     message: message,
     userPick: userpick,
-    compPick: comppick
+    compPick: comppick,
+    winner: winner
 })

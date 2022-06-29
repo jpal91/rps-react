@@ -5,11 +5,14 @@ import Button from '@mui/material/Button'
 
 import RulesModal from "./RulesModal";
 
+//holds the rules button as well as the modal
 const Rules = () => {
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
     
+    //fairly standard setup but decided to fix the position of the button
+    //to stop the "jumping" that would happen switching from GameBoard to Winner
     return (
         <Grid
             container

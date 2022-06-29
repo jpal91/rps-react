@@ -7,6 +7,7 @@ import Box from '@mui/material/Box'
 import Close from '@material-ui/icons/Close'
 import Image from 'material-ui-image'
 
+//holds the Modal that is triggered from the Rules page
 const RulesModal = (props) => {
     const { open, close } = props
 

@@ -8,6 +8,7 @@ import { keyframes } from "@emotion/react";
 
 import { imageHelper } from "../../helpers/playgame";
 
+//keyframes for the animations in component below
 const glow = keyframes`
     from {
         box-shadow: none;
@@ -28,13 +29,24 @@ const fade = keyframes`
     }
 `
 
+//holds one pick (user or comp) from parent Winner component
+//renders based on props provided and whether user or comp
 const Picks = (props) => {
     const { message, picked, id, winner } = props
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("lg"));
+    
+    //logic to return the image src from helpers/playgame
     const imgStr = imageHelper(picked)
+
+    //logic to control which Picks component should glow
+    //will only trigger if this Picks comp is the same as the winner 
     const shouldGlow = id === winner
 
+    //several animations playing in concert
+    //user pick is immediatly rendered, followed by a slow fade in of 
+    //the house/comp pick, once both a rendered, the glow effect kicks in
+    //finally the 'play again' button section appears due to a delay set in Winner
     return (
         <Grid
             item

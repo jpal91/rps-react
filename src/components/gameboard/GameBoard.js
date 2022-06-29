@@ -8,25 +8,35 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 
 
-import { gameOn, userScore, updateMessage, youPick, housePick } from '../../actions'
+import { gameOn, userScore, updateMessage, youPick, housePick, setWinner } from '../../actions'
 import { playAGame } from "../../helpers/playgame";
 
-
+//holds the actual play area 
 const GameBoard = (props) => {
-    const { gameOn, userScore, updateMessage, youPick, housePick } = props
+    const { gameOn, userScore, updateMessage, youPick, housePick, setWinner } = props
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("lg"));
 	
+    //handles clicking on one option in the play area
+    //first it will run the pick through logic which also chooses a comp pick (see helpers/playgame)
+    //next it sends both the computer and player pick to redux along with the message (ie You won!) and winner
+    //finally updates the play area to show the Winner component instead
+    //the setTimeout sends the score, but updates a little slower than the animations on the Winner/Picks comps
 	const handlePG = (pick) => {
 		let gameObj = playAGame(pick)
 
 		youPick(pick)
 		housePick(gameObj.hPick)
 		updateMessage(gameObj.message)
+        setWinner(gameObj.winner)
 		setTimeout(() => userScore(gameObj.score), 4000)
 		gameOn(false)
 	}
 
+    //had some difficulty figuring out how to style the images properly
+    //ultimately used flexbox which turned out quite well but had to
+    //set the middle triangle with an absolute position
+    //there could be some slight variance in the position of triangle, but reasonable
 	return (
         <React.Fragment>
             <Grid item xs={12}>
@@ -104,4 +114,4 @@ const GameBoard = (props) => {
 };
 
 
-export default connect(null, { gameOn, userScore, updateMessage, youPick, housePick })(GameBoard);
+export default connect(null, { gameOn, userScore, updateMessage, youPick, housePick, setWinner })(GameBoard);

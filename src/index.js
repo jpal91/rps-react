@@ -7,6 +7,7 @@ import reduxThunk from "redux-thunk";
 import reducers from "./reducers";
 import App from "./App";
 
+//boilerplate setup for redux
 const composeEnchancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //Redux DevTools
 const store = createStore(

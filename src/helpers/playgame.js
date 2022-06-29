@@ -10,7 +10,8 @@ export const playAGame = (user) => {
     let obj = {
         message: '',
         score: 0,
-        hPick: comp
+        hPick: comp,
+        winner: null
     }
 
     if (user === comp) {
@@ -22,25 +23,31 @@ export const playAGame = (user) => {
         if (comp === 'paper') {
             obj.message = 'YOU LOSE'
             obj.score = -1
+            obj.winner = 'comp'
         } else {
             obj.message = 'YOU WIN!'
             obj.score = 1
+            obj.winner = 'user'
         }
     } else if (user === 'paper') {
         if (comp === 'scissors') {
             obj.message = 'YOU LOSE'
             obj.score = -1
+            obj.winner = 'comp'
         } else {
             obj.message = 'YOU WIN!'
             obj.score = 1
+            obj.winner = 'user'
         }
     } else if (user === 'scissors') {
         if (comp === 'rock') {
             obj.message = 'YOU LOSE'
             obj.score = -1
+            obj.winner = 'comp'
         } else {
             obj.message = 'YOU WIN!'
             obj.score = 1
+            obj.winner = 'user'
         }
     }
 
