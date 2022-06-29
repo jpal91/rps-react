@@ -5,6 +5,7 @@ import typography from "./base/typography";
 import colors from "./base/colors";
 import breakpoints from "./base/breakpoints";
 import grid from "./components/grid";
+import button from "./components/button";
 
 export default createTheme({
   typography: { ...typography },
@@ -16,6 +17,7 @@ export default createTheme({
         ...globals
       }
     },
-    MuiGrid: { ...grid }
+    MuiGrid: { ...grid },
+    MuiButton: {...button }
   }
 });

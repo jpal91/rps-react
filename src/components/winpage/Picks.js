@@ -1,13 +1,39 @@
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Box from '@mui/material/Box'
 import Image from "material-ui-image";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { keyframes } from "@emotion/react";
+
+import { imageHelper } from "../../helpers/playgame";
+
+const glow = keyframes`
+    from {
+        box-shadow: none;
+    }
+
+    to {
+        box-shadow: 0 0 40px 25px hsla(360, 100%, 100%, 0.5), 0 0 0 35px #1F3757, 0 0 40px 45px hsla(360, 100%, 100%, 0.5);
+    }
+`
+
+const fade = keyframes`
+    from {
+        opacity: 0
+    }
+    
+    to {
+        opacity: 1
+    }
+`
 
 const Picks = (props) => {
-    const { message } = props
+    const { message, picked, id, winner } = props
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("lg"));
+    const imgStr = imageHelper(picked)
+    const shouldGlow = id === winner
 
     return (
         <Grid
@@ -17,6 +43,7 @@ const Picks = (props) => {
             sx={{
                 flexDirection: { xs: "column-reverse", lg: "column" },
                 alignItems: "center",
+                animation: id === 'comp' ? `${fade} 3s ease-in` : null
             }}
         >
             <Typography
@@ -25,8 +52,9 @@ const Picks = (props) => {
             >
                 {message}
             </Typography>
+            <Box sx={{ borderRadius: '50%', animation: shouldGlow ? `${glow} 2s ease-in-out infinite alternate` : null, animationDelay: '2s' }}>
             <Image
-                src="./images/icon-scissors2.svg"
+                src={imgStr}
                 imageStyle={{
                     cover: true,
                     position: "relative",
@@ -37,8 +65,10 @@ const Picks = (props) => {
                     height: matches ? 150 : 200,
                     width: matches ? 150 : 200,
                     backgroundColor: "hsla(360, 100%, 100%, 0)",
+                    borderRadius: '50%',
                 }}
             />
+            </Box>
         </Grid>
     );
 };

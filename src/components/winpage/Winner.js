@@ -1,28 +1,49 @@
 import React from "react";
+import { connect } from "react-redux";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button'
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { keyframes } from "@emotion/react";
 
 import Picks from './Picks'
+import { gameOn } from "../../actions";
 
-const Winner = () => {
+const fade = keyframes`
+    from {
+        opacity: 0
+    }
+    
+    to {
+        opacity: 1
+    }
+`
+
+const Winner = (props) => {
+    const { message, userPick, compPick, gameOn } = props
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("lg"));
+    let winner = message === 'YOU WIN!' ? 'user' : 'comp'
+    message === "IT'S A TIE!" ? winner = null : winner = winner
     
-    const message = (
+    const handleReset = () => {
+        gameOn(true)
+    }
+
+    const winOrLose = (
         <Grid
             item
             xs={12}
             lg={4}
-            sx={{ flexDirection: "column", alignItems: "center" }}
+            sx={{ flexDirection: "column", alignItems: "center", opacity: 0, animation: `${fade} 3s ease-in 3s 1 normal forwards` }}
         >
             <Typography variant="h3" sx={{ color: "white" }}>
-                YOU WIN
+                {message}
             </Typography>
             <Button
                 variant="contained"
+                onClick={handleReset}
                 sx={{
                     backgroundColor: "white",
                     color: "text.score",
@@ -37,25 +58,33 @@ const Winner = () => {
     );
 
     return (
-        <Grid container sx={{ width: { xs: '100%', lg: 944 }, mt: 10 }}>
+        <React.Fragment>
             {matches ? (
                 <React.Fragment>
-                    <Picks message={'YOU PICKED'}/>
-                    <Picks message={'THE HOUSE PICKED'}/>
-                    {message}
+                    <Picks message={'YOU PICKED'} picked={userPick} id={'user'} winner={winner}/>
+                    <Picks message={'THE HOUSE PICKED'} picked={compPick} id={'comp'} winner={winner}/>
+                    {winOrLose}
                 </React.Fragment>
             ) : (
                 <React.Fragment>
-                    <Picks message={'YOU PICKED'}/>
-                    {message}
-                    <Picks message={'THE HOUSE PICKED'}/>
+                    <Picks message={'YOU PICKED'} picked={userPick} id={'user'} winner={winner}/>
+                    {winOrLose}
+                    <Picks message={'THE HOUSE PICKED'} picked={compPick} id={'comp'} winner={winner}/>
                 </React.Fragment>
             )}
-        </Grid>
+        </React.Fragment>
     );
 };
 
-export default Winner;
+const mapStateToProps = (state) => {
+    return {
+        message: state.message,
+        userPick: state.userPick,
+        compPick: state.compPick
+    }
+}
+
+export default connect(mapStateToProps, { gameOn })(Winner);
 
 {
     /* <Grid item xs={6} lg={4} sx={{ flexDirection: 'column', alignItems: 'center' }}>

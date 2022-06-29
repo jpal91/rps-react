@@ -1,79 +1,73 @@
+import { useEffect } from "react";
+import { connect } from "react-redux";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import Grid from '@mui/material/Grid'
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-// import Image from "material-ui-image";
 
 import GameBoard from "./components/gameboard/GameBoard";
 import ScoreBoard from "./components/scoreboard/ScoreBoard";
 import Winner from "./components/winpage/Winner";
+import { userScore } from "./actions";
 
 import theme from "./assets";
 
-const App = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box
-        sx={{
-          width: "100%",
-          height: 2000,
-          zIndex: 0,
-          backgroundSize: "contain",
-          backgroundImage:
-            "radial-gradient(134.34% 134.34% at 50% 0%, #1F3757 0%, #131537 100%)"
-        }}
-      >
-        <Container
-          fluid
-          sx={{
-            maxWidth: 1440,
-            backgroundColor: "hsla(360, 100%, 100%, 0)",
-            display: "flex",
-            justifyContent: "flex-start",
-            flexDirection: "column",
-            m: 0,
-            p: 0
-          }}
-        >
-          <ScoreBoard />
-          <Winner />
-        </Container>
-      </Box>
-    </ThemeProvider>
-  );
+const App = (props) => {
+    const vp = window.visualViewport;
+    const { gameIsOn, score, userScore } = props;
+
+	useEffect(() => {
+		if (!localStorage.getItem('score') || localStorage.getItem('score') === '0') {
+			return
+		}
+		let num = Number(localStorage.getItem('score'))
+
+		userScore(num)
+	}, [])
+
+	useEffect(() => {
+		localStorage.setItem('score', score)
+	}, [score])
+
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Box
+                sx={{
+                    width: "100%",
+                    height: vp.height,
+                    zIndex: 0,
+                    backgroundSize: "contain",
+                    backgroundImage:
+                        "radial-gradient(134.34% 134.34% at 50% 0%, #1F3757 0%, #131537 100%)",
+                }}
+            >
+                <Container
+                    fluid
+                    sx={{
+                        maxWidth: 1440,
+                        backgroundColor: "hsla(360, 100%, 100%, 0)",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        flexDirection: "column",
+                    }}
+                >
+                    <ScoreBoard />
+					<Grid container sx={{ width: '100%', mt: 10 }}>
+                    	{gameIsOn ? <GameBoard /> : <Winner />}
+					</Grid>
+                </Container>
+            </Box>
+        </ThemeProvider>
+    );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        gameIsOn: state.gameIsOn,
+		score: state.score
+    };
+};
 
-{
-  /* <Container
-fixed
-sx={{
-  display: "flex",
-  width: 1440,
-  height: 500,
-  justifyContent: "center"
-}}
->
-<Box sx={{ display: "flex", alignItems: "center" }}>
-  <Image
-    src="./images/bg-triangle.svg"
-    imageStyle={{ width: 500, height: 500, position: "static" }}
-  />
-</Box>
-<Box
-  sx={{
-    position: "absolute",
-    transform: "translate(-150%, 125%)",
-    borderRadius: "100%",
-    backgroundColor: "none"
-  }}
->
-  <Image
-    src="./images/icon-rock2.svg"
-    imageStyle={{ width: 200, height: 200 }}
-  />
-</Box>
-</Container> */
-}
+export default connect(mapStateToProps, { userScore })(App);
