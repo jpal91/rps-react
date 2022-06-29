@@ -4,8 +4,9 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 // import Image from "material-ui-image";
 
-import GameBoard from "./components/GameBoard";
-import ScoreBoard from "./components/ScoreBoard";
+import GameBoard from "./components/gameboard/GameBoard";
+import ScoreBoard from "./components/scoreboard/ScoreBoard";
+import Winner from "./components/winpage/Winner";
 
 import theme from "./assets";
 
@@ -30,11 +31,13 @@ const App = () => {
             backgroundColor: "hsla(360, 100%, 100%, 0)",
             display: "flex",
             justifyContent: "flex-start",
-            flexDirection: "column"
+            flexDirection: "column",
+            m: 0,
+            p: 0
           }}
         >
           <ScoreBoard />
-          <GameBoard />
+          <Winner />
         </Container>
       </Box>
     </ThemeProvider>
