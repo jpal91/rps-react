@@ -9,6 +9,7 @@ import Container from "@mui/material/Container";
 import GameBoard from "./components/gameboard/GameBoard";
 import ScoreBoard from "./components/scoreboard/ScoreBoard";
 import Winner from "./components/winpage/Winner";
+import Rules from './components/rules/Rules'
 import { userScore } from "./actions";
 
 import theme from "./assets";
@@ -57,6 +58,7 @@ const App = (props) => {
 					<Grid container sx={{ width: '100%', mt: 10 }}>
                     	{gameIsOn ? <GameBoard /> : <Winner />}
 					</Grid>
+					<Rules />
                 </Container>
             </Box>
         </ThemeProvider>

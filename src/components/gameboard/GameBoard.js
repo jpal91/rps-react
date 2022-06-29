@@ -19,7 +19,7 @@ const GameBoard = (props) => {
 		youPick(pick)
 		housePick(gameObj.hPick)
 		updateMessage(gameObj.message)
-		userScore(gameObj.score)
+		setTimeout(() => userScore(gameObj.score), 4000)
 		gameOn(false)
 	}
 
@@ -101,20 +101,3 @@ const GameBoard = (props) => {
 
 
 export default connect(null, { gameOn, userScore, updateMessage, youPick, housePick })(GameBoard);
-
-{/* <Image
-src="./images/bg-triangle.svg"
-imageStyle={{ width: 'auto', height: 285, maxHeight: 285 }}
-style={{
-	zIndex: 0,
-	p: 0,
-	width: 250,
-	height: 285,
-	maxHeight: 285,
-	position: "relative",
-	left: "41.5%",
-	top: "35%",
-	bottom: '0%',
-	backgroundColor: "hsla(360, 100%, 100%, 0)"
-}}
-/> */}
